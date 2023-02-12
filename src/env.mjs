@@ -8,6 +8,8 @@ import { z } from "zod";
 const server = z.object({
   DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "test", "production"]),
+  MOTIVATIONAL_QUOTES_EMAIL: z.string(),
+  MOTIVATIONAL_QUOTES_EMAIL_PASSWORD: z.string(),
 });
 
 /**
@@ -27,6 +29,8 @@ const client = z.object({
 const processEnv = {
   DATABASE_URL: process.env.DATABASE_URL,
   NODE_ENV: process.env.NODE_ENV,
+  MOTIVATIONAL_QUOTES_EMAIL: process.env.MOTIVATIONAL_QUOTES_EMAIL,
+  MOTIVATIONAL_QUOTES_EMAIL_PASSWORD: process.env.MOTIVATIONAL_QUOTES_EMAIL_PASSWORD,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 
