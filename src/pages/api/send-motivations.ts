@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 import axios from 'axios';
 import { prisma } from '../../server/db';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { verifySignature } from '@upstash/qstash/nextjs';
 
 type Quote = {
     q: string;
@@ -11,7 +12,7 @@ type Quote = {
     h: string;
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
@@ -47,3 +48,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(200).send({ message: 'Motivatonal emails sent' });
     }
 }
+
+export default verifySignature(handler);
+
+export const config = {
+    api: {
+        bodyParser: false,
+    },
+} 

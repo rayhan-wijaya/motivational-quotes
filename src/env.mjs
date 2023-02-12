@@ -10,6 +10,8 @@ const server = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
   MOTIVATIONAL_QUOTES_EMAIL: z.string(),
   MOTIVATIONAL_QUOTES_EMAIL_PASSWORD: z.string(),
+  QSTASH_CURRENT_SIGNING_KEY: z.string(),
+  QSTASH_NEXT_SIGNING_KEY: z.string(),
 });
 
 /**
@@ -31,6 +33,8 @@ const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
   MOTIVATIONAL_QUOTES_EMAIL: process.env.MOTIVATIONAL_QUOTES_EMAIL,
   MOTIVATIONAL_QUOTES_EMAIL_PASSWORD: process.env.MOTIVATIONAL_QUOTES_EMAIL_PASSWORD,
+  QSTASH_CURRENT_SIGNING_KEY: process.env.QSTASH_CURRENT_SIGNING_KEY,
+  QSTASH_NEXT_SIGNING_KEY: process.env.QSTASH_NEXT_SIGNING_KEY,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 
