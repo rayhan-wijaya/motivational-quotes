@@ -1,12 +1,16 @@
 import { type NextPage } from "next";
-import Head from "next/head";
-import Link from "next/link";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 import { api } from "../utils/api";
 
 const Home: NextPage = () => {
-  const subscribeMutation = api.subscribe.subscribe.useMutation();
+  const subscribeMutation = api.subscribe.subscribe.useMutation({
+    onSuccess: () => toast.success('You successfully subscribed!', { delay: 100 }),
+    onError: (error) => toast.error(error.message, { delay: 100 }),
+  });
+
   const [email, setEmail] = useState<string>();
 
   const onSubscribe = () => {
@@ -40,6 +44,8 @@ const Home: NextPage = () => {
           Subscribe
         </button>
       </div>
+
+      <ToastContainer />
     </div>
   );
 };

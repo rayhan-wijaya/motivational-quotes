@@ -12,7 +12,7 @@ datasource db {
 
 model Subscriber {
     id        String   @id @default(cuid())
-    email     String   @db.VarChar(320)
+    email     String   @db.VarChar(320) @unique
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
