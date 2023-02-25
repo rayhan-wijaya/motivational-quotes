@@ -27,6 +27,12 @@ export const subscribeRouter = createTRPCRouter({
             });
           }
         }
+
+        throw new TRPCError({
+          message: 'Something went wrong',
+          code: 'INTERNAL_SERVER_ERROR',
+          cause: err,
+        });
       }
     }),
 });
