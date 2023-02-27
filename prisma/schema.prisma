@@ -14,7 +14,7 @@ datasource db {
 model Subscriber {
     id               String   @id @default(cuid())
     email            String   @unique @db.VarChar(320)
-    unsubscribeToken String   @default(uuid())
+    unsubscribeToken String   @default(uuid()) @db.VarChar(36)
     createdAt        DateTime @default(now())
     updatedAt        DateTime @updatedAt
 }
