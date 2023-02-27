@@ -35,21 +35,28 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                 return;
             }
 
-            const text = `${quote.q}\n-${quote.a}`;
+            const unsubscribeURL = new URL(
+                `/unsubscribe?email=${subscriber.email}&token=${subscriber.unsubscribeToken as string}`,
+                process.env.BASE_URL
+            ).href;
+
+            const html =
+                `${quote.h}
+                <a href="${unsubscribeURL}">Unsubscribe</a>`;
 
             await transporter.sendMail({
                 from: '"Motivational Quotes" <motivationalquotes2102@gmail.com>',
                 to: subscriber.email,
                 subject: 'Your Motivation for Today',
-                text,
+                html,
             });
         }));
 
-        res.status(200).send({ message: 'Motivatonal emails sent' });
+        res.status(200).send({ message: 'Motivational emails sent' });
     }
 }
 
-export default verifySignature(handler);
+export default handler;
 
 export const config = {
     api: {

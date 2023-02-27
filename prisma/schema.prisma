@@ -12,8 +12,9 @@ datasource db {
 }
 
 model Subscriber {
-    id        String   @id @default(cuid())
-    email     String   @unique @db.VarChar(320)
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    id               String   @id @default(cuid())
+    email            String   @unique @db.VarChar(320)
+    unsubscribeToken String   @default(uuid())
+    createdAt        DateTime @default(now())
+    updatedAt        DateTime @updatedAt
 }

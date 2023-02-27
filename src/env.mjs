@@ -12,6 +12,7 @@ const server = z.object({
   MOTIVATIONAL_QUOTES_EMAIL_PASSWORD: z.string(),
   QSTASH_CURRENT_SIGNING_KEY: z.string(),
   QSTASH_NEXT_SIGNING_KEY: z.string(),
+  BASE_URL: z.string().url(),
 });
 
 /**
@@ -35,6 +36,7 @@ const processEnv = {
   MOTIVATIONAL_QUOTES_EMAIL_PASSWORD: process.env.MOTIVATIONAL_QUOTES_EMAIL_PASSWORD,
   QSTASH_CURRENT_SIGNING_KEY: process.env.QSTASH_CURRENT_SIGNING_KEY,
   QSTASH_NEXT_SIGNING_KEY: process.env.QSTASH_NEXT_SIGNING_KEY,
+  BASE_URL: process.env.BASE_URL,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 

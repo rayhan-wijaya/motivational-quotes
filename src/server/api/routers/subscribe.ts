@@ -35,4 +35,41 @@ export const subscribeRouter = createTRPCRouter({
         });
       }
     }),
+  unsubscribe: publicProcedure
+    .input(
+      z.object({
+        email: z.string().email(),
+        token: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const subscriber = await ctx.prisma.subscriber.findUnique({
+        where: {
+          email: input.email,
+        },
+        select: {
+          unsubscribeToken: true,
+        },
+      });
+
+      if (subscriber === null) {
+        throw new TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'A subscriber with that email wasn\'t found',
+        });
+      }
+
+      if (input.token !== subscriber.unsubscribeToken) {
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: 'The token was invalid',
+        });
+      }
+
+      await ctx.prisma.subscriber.delete({
+        where: {
+          email: input.email,
+        },
+      });
+    }),
 });
