@@ -56,7 +56,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     }
 }
 
-export default handler;
+export default verifySignature(handler);
 
 export const config = {
     api: {
