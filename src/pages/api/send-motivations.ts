@@ -36,7 +36,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             }
 
             const unsubscribeURL = new URL(
-                `/unsubscribe?email=${subscriber.email}&token=${subscriber.unsubscribeToken as string}`,
+                // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                `/unsubscribe?email=${subscriber.email}&token=${subscriber.unsubscribeToken}`,
                 process.env.BASE_URL
             ).href;
 
