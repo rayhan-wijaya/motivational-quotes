@@ -14,6 +14,9 @@ type Quote = {
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
+        console.log(process.env.MOTIVATIONAL_QUOTES_EMAIL);
+        console.log(process.env.MOTIVATIONAL_QUOTES_EMAIL_PASSWORD);
+
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 465,
